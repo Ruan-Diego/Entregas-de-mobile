@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">AlugueJa App</string>
+    <string name="AddImovel">Add Imovel</string>
+    <string name="title_activity_login">Login</string>
+    <string name="ver_mais">VER MAIS</string>
+    <string name="mapa">MAPA</string>
+    <string name="title_activity_maps">MapsActivity</string>
+</resources>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:paddingLeft="10dp"
+    android:paddingTop="15dp"
+    android:paddingRight="10dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="2dp">
+
+            <TextView
+                android:id="@+id/TVRua"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Rua: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtRuaD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Rua Principal" />
+
+            <TextView
+                android:id="@+id/TVNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Número: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtNumD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0000" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/TVBairro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Bairro: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtBairroD"
+                android:layout_width="90dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Centro" />
+
+            <TextView
+                android:id="@+id/TVCidade"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Cidade: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtCidadeD"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Capital" />
+
+            <TextView
+                android:id="@+id/TVUF"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UF: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtUFD"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="CE" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/TVMensal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Mensalidade: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtMensalD"
+                android:layout_width="106dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="R$ 0000,00" />
+
+            <TextView
+                android:id="@+id/TVQuartos"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Quartos: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtQuartosD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0" />
+
+            <TextView
+                android:id="@+id/TVBanhe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Banheiros: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtBanheD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:paddingTop="8dp">
+
+            <TextView
+                android:id="@+id/TVCont"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Contato: "
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtContD"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="(85)90000-0000" />
+
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

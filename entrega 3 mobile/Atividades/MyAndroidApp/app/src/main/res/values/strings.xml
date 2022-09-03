@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">MyAndroidApp</string>
+    <string name="toggle_turn_on">Turn On</string>
+    <string name="toggle_turn_off">Turn Off</string>
+    <string name="btn_display">Display</string>
+    <string name="example_edittext">Example showing EditText</string>
+    <string name="show_the_text">Show the Text</string>
+    <string name="enter_text">text changes</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string-array name="sports_array">
+        <item>Shuttle Badminton</item>
+        <item>Tennis</item>
+        <item>FootBall</item>
+        <item>Basket Ball</item>
+        <item>Table Tennis</item>
+        <item>Chess</item>
+        <item>Hockey</item>
+    </string-array>
+    <string name="title_activity_main">MainActivity</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:onClick="onClickDetails"
+    android:orientation="vertical"
+    tools:context=".TelaInicial">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnDetalhes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="onClickDetails"
+            android:text="@string/ver_mais" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ListView
+            android:id="@+id/listviewtxt"
+            android:layout_width="match_parent"
+            android:layout_height="650dp"></ListView>
+    </LinearLayout>
+
+</LinearLayout>

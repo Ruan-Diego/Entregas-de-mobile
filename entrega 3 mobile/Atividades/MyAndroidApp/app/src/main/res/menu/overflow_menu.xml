@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/item_search"
+        android:title="Search"
+        app:showAsAction="ifRoom" />
+        <item android:id="@+id/item_coffee"
+            android:title="Café"
+            app:showAsAction="never" />
+        <item android:id="@+id/item_food"
+            android:title="Comida"
+            app:showAsAction="never" >
+
+            <menu>
+                <item android:id="@+id/item_chinesa"
+                    android:title="Chinesa"
+                    app:showAsAction="never" />
+                <item android:id="@+id/item_mexicana"
+                    android:title="Mexicana"
+                    app:showAsAction="never" />
+                <item android:id="@+id/item_brasileira"
+                    android:title="Brasileira"
+                    app:showAsAction="never" />
+            </menu>
+        </item>
+        <item android:id="@+id/item_drinks"
+            android:title="Bebida"
+            app:showAsAction="never" />
+</menu>
