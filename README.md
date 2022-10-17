@@ -1,2 +1,2 @@
-# Entregas-de-mobile
-Todas as entregas da disciplina da cadeira de desenvolvimento mobile. 
+# Mobile-development-studies
+Some codes that I made alone with many functions, screens and more. The last folder have a CRUD with server integration using firebase
