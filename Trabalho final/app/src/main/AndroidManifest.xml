@@ -20,21 +20,23 @@
              />
 
 
-
         <activity
-            android:name=".DetailImoveis"
+            android:name=".imovel.MeusImoveis"
+            android:exported="false" />
+        <activity
+            android:name=".imovel.DetailImoveis"
             android:exported="false" />
         <activity
             android:name=".Configuracoes"
             android:exported="false" />
         <activity
-            android:name=".PerfilUser"
+            android:name=".user.PerfilUser"
             android:exported="false" />
         <activity
-            android:name=".CadastroUser"
+            android:name=".user.CadastroUser"
             android:exported="false" />
         <activity
-            android:name=".AddImoveis"
+            android:name=".imovel.AddImoveis"
             android:exported="false" />
         <activity
             android:name=".TelaInicial"

@@ -1,4 +1,4 @@
-package com.example.aluguejaapp;
+package com.example.aluguejaapp.imovel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.aluguejaapp.R;
 import com.example.aluguejaapp.transactions.Constants;
 import com.example.aluguejaapp.model.Imoveis;
 import com.google.firebase.FirebaseApp;
@@ -80,6 +81,7 @@ public class AddImoveis extends AppCompatActivity {
                 imovel.setBanheiros(edtBanheiros.getText().toString());
                 imovel.setContato(edtContato.getText().toString());
                 imovel.setEmail(mAuth.getCurrentUser().getEmail());
+                imovel.setInteresse(0);
 
                 if(TextUtils.isEmpty(imovel.getRua()) || TextUtils.isEmpty(imovel.getNumero()) || TextUtils.isEmpty(imovel.getBairro()) ||
                         TextUtils.isEmpty(imovel.getCidade()) || TextUtils.isEmpty(imovel.getUf()) || TextUtils.isEmpty(imovel.getMensalidade()) ||

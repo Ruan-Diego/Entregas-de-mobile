@@ -1,4 +1,4 @@
-package com.example.aluguejaapp;
+package com.example.aluguejaapp.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +16,9 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
+import com.example.aluguejaapp.Login;
+import com.example.aluguejaapp.R;
+import com.example.aluguejaapp.TelaInicial;
 import com.example.aluguejaapp.model.Usuario;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -104,7 +107,7 @@ public class CadastroUser extends AppCompatActivity {
                                 prgsBarCad.setVisibility(View.INVISIBLE);
                             }
                         });
-                    } else { //Senhas Diferentes
+                    } else {
                         Toast.makeText(CadastroUser.this, "Senhas devem ser iguais!", Toast.LENGTH_SHORT).show();
                     }
                 }

@@ -10,8 +10,8 @@
         android:icon="@drawable/ic_action_properties"
         app:showAsAction="ifRoom"/>
     <item
-        android:id="@+id/delete"
-        android:title="Excluir" />
+        android:id="@+id/btnMeusImoveis"
+        android:title="Meus imóveis" />
     <item android:id="@+id/settings"
         android:title="Configurações"/>
     <item android:id="@+id/about"

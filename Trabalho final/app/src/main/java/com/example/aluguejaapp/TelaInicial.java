@@ -1,11 +1,17 @@
 package com.example.aluguejaapp;
 
+import static com.example.aluguejaapp.transactions.Constants.CHANNEL_ID;
+import static com.example.aluguejaapp.transactions.Constants.NOTIFICATION_ID;
+
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
 
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Intent;
-import android.net.Uri;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -18,8 +24,14 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.aluguejaapp.imovel.AddImoveis;
+import com.example.aluguejaapp.imovel.DetailImoveis;
+import com.example.aluguejaapp.imovel.MeusImoveis;
 import com.example.aluguejaapp.transactions.Constants;
 import com.example.aluguejaapp.model.Imoveis;
+import com.example.aluguejaapp.user.PerfilUser;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -38,6 +50,8 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
     ArrayList<Imoveis> arrayList = new ArrayList<>();
     ArrayAdapter<Imoveis> arrayAdapter;
     int select;
+    private NotificationManager mNotifyManager;
+
 
     @Override
     protected void onCreate (Bundle savedInstanceState){
@@ -51,7 +65,7 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
         select = -1;
 
-        Button alugar = findViewById(R.id.btnAlugar);
+        Button alugar = findViewById(R.id.alugar);
 
         listView.setSelector(android.R.color.holo_blue_dark);
 
@@ -67,13 +81,20 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Imoveis imovel = arrayList.get(select);
-                String numContato = imovel.getContato();
+                //Imoveis imovel = dataSnapshot.getValue(Imoveis.class);
 
-                String message = "Olá, me interessei pelo seu imóvel que fica no endereço " + imovel.getRua() + ", " + imovel.getNumero() + ", que fica no " + imovel.getBairro() + ".";
+                if(!imovel.getEmail().equals(mAuth.getCurrentUser().getEmail())){
+                    imovel.setInteresse(1);
+                    databaseReference.child(imovel.getId()).setValue(imovel).addOnCompleteListener(new OnCompleteListener<Void>() {
+                        @Override
+                        public void onComplete(@NonNull Task<Void> task) {
 
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse("http://api.whatsapp.com/send/?phone="+"+55"+numContato + "&text=" + message));
-                startActivity(intent);
+                            sendNotification();
+                        }
+                    });
+                }
+                else
+                    Toast.makeText(TelaInicial.this, "Você não pode alugar seu próprio imóvel", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -105,6 +126,35 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
 
             }
         });
+        createNotificationChannel();
+        getNotificationBuilder();
+    }
+    public void createNotificationChannel()
+    {
+        mNotifyManager = (NotificationManager)
+                getSystemService(NOTIFICATION_SERVICE);
+        // Create a NotificationChannel
+        NotificationChannel notificationChannel = new NotificationChannel(CHANNEL_ID,
+                "AlugaJá Notificações", NotificationManager
+                .IMPORTANCE_HIGH);
+        notificationChannel.enableLights(true);
+        notificationChannel.setLightColor(Color.RED);
+        notificationChannel.enableVibration(true);
+        notificationChannel.setDescription("Notificação AlugaJá");
+        mNotifyManager.createNotificationChannel(notificationChannel);
+    }
+
+    private NotificationCompat.Builder getNotificationBuilder(){
+
+        NotificationCompat.Builder notifyBuilder = new NotificationCompat.Builder(this, CHANNEL_ID)
+                .setContentTitle("Alguém se interessou pelo seu imóvel")
+                .setContentText("Permita que ele possa entrar em contato")
+                .setSmallIcon(R.drawable.ic_launcher_background);
+        return notifyBuilder;
+    }
+    public void sendNotification(){
+        NotificationCompat.Builder notifyBuilder = getNotificationBuilder();
+        mNotifyManager.notify(NOTIFICATION_ID, notifyBuilder.build());
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -131,8 +181,11 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
+
     public boolean onOptionsItemSelected(MenuItem item) {
-        Toast.makeText(TelaInicial.this, "" + item.getItemId(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(TelaInicial.this, "", Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
             case R.id.profile:
                 perfilUsuario(mAuth.getCurrentUser());
@@ -140,8 +193,8 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
             case R.id.properties:
                 addImovel();
                 break;
-            case R.id.delete:
-                deleteImovel(arrayList.get(select));
+            case R.id.btnMeusImoveis:
+                meusImoveis();
                 break;
             case R.id.settings:
                 configuracoes();
@@ -157,18 +210,9 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
         Intent intent = new Intent(this, AddImoveis.class);
         startActivityForResult(intent, Constants.REQUEST_ADD_IMOVEL);
     }
-    public void deleteImovel(Imoveis imovel){
-
-        if(imovel.getEmail().equals(mAuth.getCurrentUser().getEmail())){
-            databaseReference.child(imovel.getId()).removeValue();
-            arrayList.remove(imovel);
-            arrayAdapter.notifyDataSetChanged();
-        }
-        else{
-            Toast.makeText(this, "deu merda", Toast.LENGTH_SHORT).show();
-        }
-
-
+    public void meusImoveis(){
+        Intent intent = new Intent(this, MeusImoveis.class);
+        startActivity(intent);
     }
 
     public void sair() {

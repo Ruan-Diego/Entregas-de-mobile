@@ -3,6 +3,8 @@ package com.example.aluguejaapp.model;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class Imoveis {
@@ -17,9 +19,12 @@ public class Imoveis {
     String quartos;
     String banheiros;
     String contato;
+    int interesse;
 
 
-    public Imoveis(String email, String rua, String numero, String bairro, String cidade, String uf, String mensalidade, String quartos, String banheiros, String contato) {
+
+    public Imoveis(int interesse, String email, String rua, String numero, String bairro, String cidade, String uf, String mensalidade, String quartos, String banheiros, String contato) {
+        this.interesse = interesse;
         this.email = email;
         this.rua = rua;
         this.numero = numero;
@@ -36,13 +41,22 @@ public class Imoveis {
 
     }
 
+    public int getInteresse() {
+        return interesse;
+    }
+
+    public void setInteresse(int interesse) {
+        this.interesse += interesse;
+    }
+
     public String getEmail() {
         return email;
     }
 
-   public void setEmail(String email){
+    public void setEmail(String email){
         this.email = email;
     }
+
     public String getId() {
         return id;
     }
@@ -125,7 +139,7 @@ public class Imoveis {
 
     @Override
     public String toString() {
-        return  cidade + "/n"+ quartos +
+        return  cidade +"na rua: "+ rua + "\n" + quartos +
                 " Quartos " + banheiros + " Banheiros "+ mensalidade;
     }
 }

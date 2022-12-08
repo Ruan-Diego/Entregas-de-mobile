@@ -3,6 +3,15 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/drawable/notification_icon.xml" value="0.1955" />
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/layout/activity_cadastro_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/layout/activity_favoritos.xml" value="0.36666666666666664" />
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/layout/activity_meus_imoveis.xml" value="0.33" />
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/layout/activity_perfil_user.xml" value="0.36666666666666664" />
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/layout/activity_tela_inicial.xml" value="0.36666666666666664" />
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/layout/activity_update_user.xml" value="0.365625" />
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/layout/login.xml" value="0.36666666666666664" />
+        <entry key="..\:/GitHub/Mobile-development-studies/Trabalho final/app/src/main/res/menu/menu_tela_inicial.xml" value="0.36666666666666664" />
         <entry key="..\:/GitHub/mobile2022.1/AlugueJaApp/app/src/main/res/layout/activity_cadastro_user.xml" value="0.2526041666666667" />
         <entry key="..\:/GitHub/mobile2022.1/AlugueJaApp/app/src/main/res/layout/activity_configuracoes.xml" value="0.2526041666666667" />
         <entry key="..\:/GitHub/mobile2022.1/AlugueJaApp/app/src/main/res/layout/activity_detail_imoveis.xml" value="0.2526041666666667" />

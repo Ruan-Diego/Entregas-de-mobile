@@ -1,4 +1,4 @@
-package com.example.aluguejaapp;
+package com.example.aluguejaapp.user;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -6,8 +6,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.aluguejaapp.R;
+import com.example.aluguejaapp.TelaInicial;
+import com.example.aluguejaapp.imovel.DetailImoveis;
+import com.example.aluguejaapp.model.Imoveis;
+import com.example.aluguejaapp.model.Usuario;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -17,6 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.Map;
 
 public class PerfilUser extends AppCompatActivity {
+    private FirebaseAuth mAuth;
+
+
+    DatabaseReference databaseReference;
     private TextView nomePerfil, emailPerfil, cpfPerfil, cidadePerfil, ufPerfil;
     private String email;
     private Map<String, String> userMap;
@@ -24,11 +39,14 @@ public class PerfilUser extends AppCompatActivity {
     private static final String USUARIO = "Usuario";
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_perfil_user);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("Usuarios");
+        mAuth = FirebaseAuth.getInstance();
         Intent intent = getIntent();
         email = intent.getStringExtra("email");
 
@@ -41,7 +59,6 @@ public class PerfilUser extends AppCompatActivity {
         cpfPerfil = findViewById(R.id.txtCpfPerfil);
         cidadePerfil = findViewById(R.id.txtCidadePerfil);
         ufPerfil = findViewById(R.id.txtUfPerfil);
-
 
         userReference.addValueEventListener(new ValueEventListener() {
             String fNome, fEmail, fCpf, fCidade, fUf;
@@ -69,5 +86,6 @@ public class PerfilUser extends AppCompatActivity {
                 Log.w(TAG, "Failed to read value.", databaseError.toException());
             }
         });
+
     }
 }
