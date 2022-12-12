@@ -2,6 +2,7 @@ package com.example.aluguejaapp.imovel;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -18,11 +19,7 @@ import com.firebase.client.Firebase;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.UUID;
-
-
-public class AddImoveis extends AppCompatActivity {
-
+public class EditarImoveis extends AppCompatActivity{
     DatabaseReference mDatabase;
     Firebase meuFirebase;
     private FirebaseAuth mAuth;
@@ -38,7 +35,7 @@ public class AddImoveis extends AppCompatActivity {
     EditText edtContato;
     Button btnConfirma;
     boolean edit;
-    int idEditar;
+    Imoveis imovel = new Imoveis();
     String id;
 
     @Override
@@ -46,8 +43,8 @@ public class AddImoveis extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_imoveis);
 
-        Imoveis imovel = new Imoveis();
-        String uniqueID = UUID.randomUUID().toString();
+
+
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         Firebase.setAndroidContext(this);
@@ -65,39 +62,11 @@ public class AddImoveis extends AppCompatActivity {
 
         meuFirebase = new Firebase("https://alugueja-app-d1519-default-rtdb.firebaseio.com/");
 
-        btnConfirma.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                DatabaseReference imoveis = mDatabase.child("Imoveis");
-                imovel.setId(uniqueID);
-                imovel.setRua(edtRua.getText().toString());
-                imovel.setNumero(edtNumero.getText().toString());
-                imovel.setBairro(edtBairro.getText().toString());
-                imovel.setCidade(edtCidade.getText().toString());
-                imovel.setUf(edtUf.getText().toString());
-                imovel.setMensalidade(edtMensalidade.getText().toString());
-                imovel.setQuartos(edtQuartos.getText().toString());
-                imovel.setBanheiros(edtBanheiros.getText().toString());
-                imovel.setContato(edtContato.getText().toString());
-                imovel.setEmail(mAuth.getCurrentUser().getEmail());
-                imovel.setInteresse(0);
-
-                if(TextUtils.isEmpty(imovel.getRua()) || TextUtils.isEmpty(imovel.getNumero()) || TextUtils.isEmpty(imovel.getBairro()) ||
-                        TextUtils.isEmpty(imovel.getCidade()) || TextUtils.isEmpty(imovel.getUf()) || TextUtils.isEmpty(imovel.getMensalidade()) ||
-                        TextUtils.isEmpty(imovel.getQuartos()) || TextUtils.isEmpty(imovel.getBanheiros())){
-                    Toast.makeText(AddImoveis.this, "Error", Toast.LENGTH_SHORT).show();
-                }else{
-                    Firebase no01 = meuFirebase.child("Imoveis");
-                    no01.child(uniqueID).setValue(imovel);
-                    finish();
-                }
-            }
-        });
-
         edit = false;
 
         if(getIntent().getExtras() != null){
+
+            id = (String)getIntent().getExtras().get("id");
             String rua = (String)getIntent().getExtras().get("rua");
             String numero = (String)getIntent().getExtras().get("numero");
             String bairro = (String)getIntent().getExtras().get("bairro");
@@ -107,7 +76,6 @@ public class AddImoveis extends AppCompatActivity {
             String quartos = (String)getIntent().getExtras().get("quartos");
             String banheiros = (String)getIntent().getExtras().get("banheiros");
             String contato = (String)getIntent().getExtras().get("contato");
-            idEditar = (int)getIntent().getExtras().get("id");
 
             edtRua.setText(rua);
             edtNumero.setText(numero);
@@ -121,7 +89,40 @@ public class AddImoveis extends AppCompatActivity {
 
             edit = true;
         }
+        btnConfirma.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imovel.setId(id);
+                imovel.setRua(edtRua.getText().toString());
+                imovel.setNumero(edtNumero.getText().toString());
+                imovel.setBairro(edtBairro.getText().toString());
+                imovel.setCidade(edtCidade.getText().toString());
+                imovel.setUf(edtUf.getText().toString());
+                imovel.setMensalidade(edtMensalidade.getText().toString());
+                imovel.setQuartos(edtQuartos.getText().toString());
+                imovel.setBanheiros(edtBanheiros.getText().toString());
+                imovel.setContato(edtContato.getText().toString());
+                imovel.setEmail(mAuth.getCurrentUser().getEmail());
+                imovel.setInteresse(0);
+
+                if (TextUtils.isEmpty(imovel.getRua()) || TextUtils.isEmpty(imovel.getNumero()) || TextUtils.isEmpty(imovel.getBairro()) ||
+                        TextUtils.isEmpty(imovel.getCidade()) || TextUtils.isEmpty(imovel.getUf()) || TextUtils.isEmpty(imovel.getMensalidade()) ||
+                        TextUtils.isEmpty(imovel.getQuartos()) || TextUtils.isEmpty(imovel.getBanheiros())) {
+                    Toast.makeText(EditarImoveis.this, "Error", Toast.LENGTH_SHORT).show();
+                } else {
+                    Firebase no01 = meuFirebase.child("Imoveis").child(id);
+                    no01.setValue(imovel);
+                    voltar();
+                }
+            }
+        });
     }
+
+    public void voltar(){
+        Intent intent = new Intent(this, MeusImoveis.class);
+        startActivity(intent);
+    }
+
 
     public void cancelarBtn(View view){
         setResult(Constants.RESULT_CANCEL_IMOVEL);

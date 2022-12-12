@@ -39,6 +39,8 @@ public class MeusImoveis extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+
+
         mAuth = FirebaseAuth.getInstance();
         setContentView(R.layout.activity_meus_imoveis);
         databaseReference = FirebaseDatabase.getInstance().getReference("Imoveis");
@@ -49,12 +51,9 @@ public class MeusImoveis extends AppCompatActivity {
 
         listView.setSelector(android.R.color.holo_blue_dark);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position, long arg3) {
-                Toast.makeText(MeusImoveis.this, "" + arrayList.get(position).toString(), Toast.LENGTH_SHORT).show();
-                select = position;
-            }
+        listView.setOnItemClickListener((arg0, arg1, position, arg3) -> {
+            Toast.makeText(MeusImoveis.this, "" + arrayList.get(position).toString(), Toast.LENGTH_SHORT).show();
+            select = position;
         });
 
         databaseReference.addChildEventListener(new ChildEventListener() {
@@ -69,17 +68,17 @@ public class MeusImoveis extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
@@ -95,6 +94,23 @@ public class MeusImoveis extends AppCompatActivity {
         databaseReference.child(imovel.getId()).removeValue();
         arrayList.remove(imovel);
         arrayAdapter.notifyDataSetChanged();
+    }
+
+    public void onClickEditar (View view){
+        Imoveis imovel = arrayList.get(select);
+        Intent intent = new Intent(this, EditarImoveis.class);
+        intent.putExtra("id", imovel.getId());
+        intent.putExtra("rua", imovel.getRua());
+        intent.putExtra("numero", imovel.getNumero());
+        intent.putExtra("bairro", imovel.getBairro());
+        intent.putExtra("cidade", imovel.getCidade());
+        intent.putExtra("uf", imovel.getUf());
+        intent.putExtra("mensalidade", imovel.getMensalidade());
+        intent.putExtra("quartos", imovel.getQuartos());
+        intent.putExtra("banheiros", imovel.getBanheiros());
+        intent.putExtra("contato", imovel.getContato());
+        startActivity(intent);
+
     }
 
     public void onClickVoltar (View view){

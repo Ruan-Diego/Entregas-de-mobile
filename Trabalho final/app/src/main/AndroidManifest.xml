@@ -27,6 +27,9 @@
             android:name=".imovel.DetailImoveis"
             android:exported="false" />
         <activity
+            android:name=".imovel.EditarImoveis"
+            android:exported="false" />
+        <activity
             android:name=".Configuracoes"
             android:exported="false" />
         <activity

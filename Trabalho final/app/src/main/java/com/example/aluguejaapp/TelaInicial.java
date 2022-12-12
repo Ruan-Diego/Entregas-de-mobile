@@ -65,7 +65,7 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
         listView.setAdapter(arrayAdapter);
         select = -1;
 
-        Button alugar = findViewById(R.id.alugar);
+        Button alugar = findViewById(R.id.editar);
 
         listView.setSelector(android.R.color.holo_blue_dark);
 
@@ -108,17 +108,17 @@ public class TelaInicial<childEventListener> extends AppCompatActivity {
 
             @Override
             public void onChildChanged(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
-
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onChildMoved(@NonNull DataSnapshot dataSnapshot, @Nullable String previousChildName) {
-
+                arrayAdapter.notifyDataSetChanged();
             }
 
             @Override
